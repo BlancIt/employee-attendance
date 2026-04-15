@@ -1,4 +1,4 @@
-# Employee Attendance - Aplikasi untuk absensi karyawan secara WFH (Work From Home) - IN PROGRESS
+# Employee Attendance - IN PROGRESS
 
 Fullstack web application for employee WFH attendance management built with **NestJS** (backend) and **React** (frontend).
 
@@ -7,6 +7,9 @@ Fullstack web application for employee WFH attendance management built with **Ne
 - **Backend:** NestJS, TypeScript, TypeORM, PostgreSQL
 - **Frontend:** React.js, TypeScript
 - **Auth:** JWT (JSON Web Token)
+- **Message Queue:** RabbitMQ
+- **Real-time:** Socket.IO (WebSocket)
+- **Database:** PostgreSQL (main database) + PostgreSQL (change logs database)
 
 ## Prerequisites
 
@@ -15,13 +18,16 @@ Fullstack web application for employee WFH attendance management built with **Ne
 
 ## Quick Start
 
-### 1. Start Database (PostgreSQL)
+### 1. Start Infrastructure
 
 ```bash
 docker compose up -d
 ```
 
-This will start PostgreSQL (main DB) on port `5432`.
+This will start:
+- PostgreSQL (main DB) on port `5432`
+- PostgreSQL (logs DB) on port `5433`
+- RabbitMQ on port `5672` (management UI: `http://localhost:15672`)
 
 ### 2. Start Backend
 
@@ -48,6 +54,10 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 - Database schema (Employee + Attendance tables)
 - JWT authentication (login)
 - Employee profile API (view, update photo/phone, change password)
+- Attendance API (clock in, clock out, summary with date filter)
+- Admin API (manage employees, view all attendance)
+- Real-time WebSocket notifications to admin on profile changes
+- RabbitMQ message queue for change logging to separate database
 - Auto-seed demo data on first run
 
 ## API Endpoints
@@ -59,24 +69,34 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 - `GET /api/employees/me` - Get own profile
 - `PATCH /api/employees/me` - Update own profile (phone, photo)
 - `POST /api/employees/me/change-password` - Change password
+- `GET /api/employees` - [Admin] List all employees
+- `POST /api/employees` - [Admin] Create employee
+- `PATCH /api/employees/:id` - [Admin] Update employee
+
+### Attendance (requires JWT)
+- `POST /api/attendances/clock-in` - Clock in
+- `POST /api/attendances/clock-out` - Clock out
+- `GET /api/attendances/me?from=&to=` - Get own attendance summary
+- `GET /api/attendances?from=&to=` - [Admin] Get all attendance
 
 ## Architecture
 
 ```
-┌──────────────┐
-│   NestJS     │
-│  (Backend)   │
-└──────┬───────┘
-       │
-┌──────▼───────┐
-│  PostgreSQL  │
-│  (Main DB)   │
-└──────────────┘
+                ┌──────────────┐
+                │   NestJS     │
+                │  (Backend)   │
+                └──┬───┬───┬──┘
+                   │   │   │
+          ┌────────┘   │   └────────┐
+          │            │            │
+ ┌────────▼───┐ ┌─────▼─────┐ ┌────▼────────┐
+ │ PostgreSQL │ │ RabbitMQ  │ │ PostgreSQL  │
+ │ (Main DB)  │ │ (Queue)   │ │ (Logs DB)   │
+ └────────────┘ └───────────┘ └─────────────┘
 ```
 
 ## To Be Worked/Added
 
-- Attendance APIs (clock in/out, summary), Admin APIs, alert notification and message log queueing (Using RabbitMQ)
 - Frontend - Employee app (Login, Profile, Attendance pages)
-- Frontend - Admin app
+- Frontend - Admin app (Employee management, Attendance monitoring)
 - Testing, Polishing and finishing
