@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Card, Form, Input, Button, Typography, message } from 'antd';
+import { Card, Form, Input, Button, Typography, App } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 
@@ -9,6 +9,7 @@ const { Title, Text } = Typography;
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const { login, isAdmin } = useAuth();
+  const { message } = App.useApp();
   const navigate = useNavigate();
 
   const onFinish = async (values: { email: string; password: string }) => {
