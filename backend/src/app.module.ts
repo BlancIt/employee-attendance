@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { getDatabaseConfig } from './config/database.config';
+import { getDatabaseConfig, getLogsDatabaseConfig } from './config/database.config';
 import { AuthModule } from './auth/auth.module';
 import { EmployeeModule } from './employee/employee.module';
-import { SeedModule } from './seed/seed.module';
 import { AttendanceModule } from './attendance/attendance.module';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -15,10 +15,16 @@ import { AttendanceModule } from './attendance/attendance.module';
       inject: [ConfigService],
       useFactory: getDatabaseConfig,
     }),
+    TypeOrmModule.forRootAsync({
+      name: 'logsConnection',
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: getLogsDatabaseConfig,
+    }),
     AuthModule,
     EmployeeModule,
-    SeedModule,
     AttendanceModule,
+    SeedModule,
   ],
 })
 export class AppModule {}
