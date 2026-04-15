@@ -66,16 +66,16 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 - `POST /api/auth/login` - Login with email & password
 
 ### Employees (requires JWT)
-- `GET /api/employees/me` - Get own profile
-- `PATCH /api/employees/me` - Update own profile (phone, photo)
-- `POST /api/employees/me/change-password` - Change password
+- `GET /api/employees/me` - Get current user profile
+- `PATCH /api/employees/me` - Update current user  profile (phone, photo)
+- `POST /api/employees/me/change-password` - Change current user password
 - `GET /api/employees` - [Admin] List all employees
 - `POST /api/employees` - [Admin] Create employee
 - `PATCH /api/employees/:id` - [Admin] Update employee
 
 ### Attendance (requires JWT)
-- `POST /api/attendances/clock-in` - Clock in
-- `POST /api/attendances/clock-out` - Clock out
+- `POST /api/attendances/clock-in` - Submit Clock in record
+- `POST /api/attendances/clock-out` - Submit Clock out record
 - `GET /api/attendances/me?from=&to=` - Get own attendance summary
 - `GET /api/attendances?from=&to=` - [Admin] Get all attendance
 
