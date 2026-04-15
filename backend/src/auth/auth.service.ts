@@ -13,6 +13,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  // Login API
   async login(email: string, password: string) {
     const employee = await this.employeeRepo.findOne({ where: { email } });
     if (!employee) {

@@ -11,6 +11,7 @@ export class EmployeeService {
     private employeeRepo: Repository<Employee>,
   ) {}
 
+  // For getting user's profile
   async findById(id: number): Promise<Employee> {
     const employee = await this.employeeRepo.findOne({
       where: { id },
@@ -20,6 +21,7 @@ export class EmployeeService {
     return employee;
   }
 
+  // Update user's profile data (phone number and profile picture)
   async updateProfile(id: number, data: { phone_number?: string; photo_url?: string }): Promise<Employee> {
     const employee = await this.employeeRepo.findOne({ where: { id } });
     if (!employee) throw new NotFoundException('Employee not found');
@@ -36,6 +38,7 @@ export class EmployeeService {
     return result as Employee;
   }
 
+  // Change user's password, encrypted in bcrypt. Requires validating old password first.
   async changePassword(id: number, oldPassword: string, newPassword: string): Promise<{ message: string }> {
     const employee = await this.employeeRepo.findOne({ where: { id } });
     if (!employee) throw new NotFoundException('Employee not found');

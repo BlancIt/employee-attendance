@@ -13,6 +13,7 @@ export class SeedService implements OnModuleInit {
     private employeeRepo: Repository<Employee>,
   ) {}
 
+  // Seeds database data on module initialization
   async onModuleInit() {
     const count = await this.employeeRepo.count();
     if (count > 0) {

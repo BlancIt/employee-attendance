@@ -13,7 +13,7 @@ export class Attendance {
   time: Date;
 
   @Column()
-  status: string; // 'masuk' | 'pulang'
+  status: string;
 
   @Column()
   employee_id: number;
