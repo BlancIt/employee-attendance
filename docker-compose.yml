@@ -12,5 +12,33 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  db-logs:
+    image: postgres:15-alpine
+    container_name: employee-postgres-logs
+    restart: always
+    ports:
+      - '5433:5432'
+    environment:
+      POSTGRES_USER: employee_admin
+      POSTGRES_PASSWORD: User12345
+      POSTGRES_DB: employee_logs
+    volumes:
+      - postgres_logs_data:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: employee-rabbitmq
+    restart: always
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    environment:
+      RABBITMQ_DEFAULT_USER: employee_admin
+      RABBITMQ_DEFAULT_PASS: User12345
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
 volumes:
   postgres_data:
+  postgres_logs_data:
+  rabbitmq_data:
