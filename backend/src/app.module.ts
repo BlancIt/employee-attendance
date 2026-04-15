@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { EmployeeModule } from './employee/employee.module';
 import { AttendanceModule } from './attendance/attendance.module';
 import { SeedModule } from './seed/seed.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { SeedModule } from './seed/seed.module';
     EmployeeModule,
     AttendanceModule,
     SeedModule,
+    NotificationModule,
   ],
 })
 export class AppModule {}
