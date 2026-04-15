@@ -51,4 +51,39 @@ export class EmployeeService {
 
     return { message: 'Password changed successfully' };
   }
+
+  // Get all employees data, with password not included
+  async findAll(): Promise<Employee[]> {
+    return this.employeeRepo.find({
+      select: ['id', 'name', 'email', 'photo_url', 'position', 'phone_number', 'is_admin', 'created_at', 'updated_at'],
+    });
+  }
+
+  // Create an employee data
+  async createEmployee(data: Partial<Employee>): Promise<Employee> {
+    const existing = await this.employeeRepo.findOne({ where: { email: data.email } });
+    if (existing) throw new BadRequestException('Email already exists');
+
+    if (!data.password) throw new BadRequestException('Password is required');
+    const hashedPassword = await bcrypt.hash(data.password, 10);
+    const employee = this.employeeRepo.create({ ...data, password: hashedPassword });
+    const saved = await this.employeeRepo.save(employee);
+    const { password: _pw, ...result } = saved;
+    return result as Employee;
+  }
+
+  // Updates an employee data
+  async updateEmployee(id: number, data: Partial<Employee>): Promise<Employee> {
+    const employee = await this.employeeRepo.findOne({ where: { id } });
+    if (!employee) throw new NotFoundException('Employee not found');
+
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 10);
+    }
+
+    Object.assign(employee, data);
+    const saved = await this.employeeRepo.save(employee);
+    const { password, ...result } = saved;
+    return result as Employee;
+  }
 }

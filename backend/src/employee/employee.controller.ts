@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Patch, Body, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Patch, Body, Param, UseGuards, Request, ParseIntPipe } from '@nestjs/common';
 import { EmployeeService } from './employee.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AdminGuard } from '../auth/roles.guard';
 
 @Controller('employees')
 @UseGuards(JwtAuthGuard)
@@ -20,5 +21,24 @@ export class EmployeeController {
   @Post('me/change-password')
   async changePassword(@Request() req, @Body() body: { oldPassword: string; newPassword: string }) {
     return this.employeeService.changePassword(req.user.id, body.oldPassword, body.newPassword);
+  }
+
+  // Admin Access Only Endpoints
+  @Get()
+  @UseGuards(AdminGuard)
+  async findAll() {
+    return this.employeeService.findAll();
+  }
+
+  @Post()
+  @UseGuards(AdminGuard)
+  async createEmployee(@Body() body: any) {
+    return this.employeeService.createEmployee(body);
+  }
+
+  @Patch(':id')
+  @UseGuards(AdminGuard)
+  async updateEmployee(@Param('id', ParseIntPipe) id: number, @Body() body: any) {
+    return this.employeeService.updateEmployee(id, body);
   }
 }
