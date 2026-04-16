@@ -3,6 +3,7 @@ import { ConfigProvider, App as AntApp } from 'antd'
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/employee/ProfilePage';
+import AttendancePage from './pages/employee/AttendancePage';
 import EmployeeLayout from './layouts/EmployeeLayout';
 
 // Protects routes - redirects to login if not authenticated
@@ -33,7 +34,7 @@ const AppRoutes = () => {
       >
         <Route index element={<Navigate to="/profile" />} />
         <Route path="profile" element={<ProfilePage />} />
-        <Route path="attendance" element={<div>Attendance Page (coming soon)</div>} />
+        <Route path="attendance" element={<AttendancePage />} />
         <Route path="attendance-summary" element={<div>Summary Page (coming soon)</div>} />
       </Route>
 

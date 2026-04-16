@@ -92,7 +92,7 @@ const ProfilePage = () => {
   return (
     <div>
       <Card>
-        {/* Profile Header */}
+        {/* Profile Header Section */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 24, marginBottom: 24 }}>
           <div style={{ position: 'relative' }}>
             <Avatar
@@ -123,7 +123,7 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Profile Details */}
+        {/* Profile Details Section */}
         <Descriptions column={1} bordered>
           <Descriptions.Item label="Name">{profile?.name}</Descriptions.Item>
           <Descriptions.Item label="Email">{profile?.email}</Descriptions.Item>
