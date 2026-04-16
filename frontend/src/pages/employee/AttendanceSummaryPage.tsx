@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Table, DatePicker, Card, Tag, Typography, Flex } from 'antd';
+import { Table, DatePicker, Card, Tag, Typography } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
 import dayjs, { Dayjs } from 'dayjs';
 import api from '../../api/axios';
 
-const { RangePicker } = DatePicker;
 const { Title } = Typography;
 
 interface AttendanceRecord {
@@ -94,23 +93,32 @@ const AttendanceSummaryPage = () => {
       <Title level={3}>
         <CalendarOutlined /> Attendance Summary
       </Title>
-
-      <Card style={{ marginBottom: 16 }}>
-        <Flex vertical gap="small">
-            <span style={{ fontWeight: 500 }}>Filter by Date Range:</span>
-            <RangePicker
-                value={dateRange}
-                onChange={(dates) => {
-                    if (dates && dates[0] && dates[1]) {
-                    setDateRange([dates[0], dates[1]]);
-                    }
-                }}
-                format="DD MMM YYYY"
-                allowClear={false}
-                style={{ width: 300 }}
+      
+    <Card style={{ marginBottom: 16 }}>
+        <div style={{ fontWeight: 500, marginBottom: 8 }}>Filter by Date Range:</div>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <DatePicker
+            value={dateRange[0]}
+            onChange={(date) => {
+                if (date) setDateRange([date, dateRange[1]]);
+            }}
+            format="DD MMM YYYY"
+            allowClear={false}
+            placeholder="From"
+            style={{ flex: 1, minWidth: 140, maxWidth: 300 }}
             />
-        </Flex>
-      </Card>
+            <DatePicker
+            value={dateRange[1]}
+            onChange={(date) => {
+                if (date) setDateRange([dateRange[0], date]);
+            }}
+            format="DD MMM YYYY"
+            allowClear={false}
+            placeholder="To"
+            style={{ flex: 1, minWidth: 140, maxWidth: 300 }}
+            />
+        </div>
+    </Card>
 
       <Table
         columns={columns}
@@ -118,6 +126,7 @@ const AttendanceSummaryPage = () => {
         rowKey="date"
         loading={loading}
         pagination={{ pageSize: 10 }}
+        scroll={{ x: 600 }} 
         locale={{ emptyText: 'No attendance records found' }}
       />
     </div>

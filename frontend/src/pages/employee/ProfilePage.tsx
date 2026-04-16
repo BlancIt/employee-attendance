@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Card, Descriptions, Button, Modal, Form, Input, Avatar, Upload, App, Spin } from 'antd';
+import { Card, Descriptions, Button, Modal, Form, Input, Avatar, Upload, App, Spin, Grid } from 'antd';
 import { UserOutlined, EditOutlined, CameraOutlined, LockOutlined } from '@ant-design/icons';
 import api from '../../api/axios';
 
@@ -22,6 +22,9 @@ const ProfilePage = () => {
   const { message } = App.useApp();
   const [phoneForm] = Form.useForm();
   const [passwordForm] = Form.useForm();
+  
+  const screens = Grid.useBreakpoint();
+  const isMobile = !screens.md;
 
   const fetchProfile = async () => {
     try {
@@ -124,7 +127,7 @@ const ProfilePage = () => {
         </div>
 
         {/* Profile Details Section */}
-        <Descriptions column={1} bordered>
+        <Descriptions column={1} bordered layout={isMobile ? 'vertical' : 'horizontal'} size="small">
           <Descriptions.Item label="Name">{profile?.name}</Descriptions.Item>
           <Descriptions.Item label="Email">{profile?.email}</Descriptions.Item>
           <Descriptions.Item label="Position">{profile?.position}</Descriptions.Item>

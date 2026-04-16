@@ -128,7 +128,7 @@ const AttendancePage = () => {
        </div>
 
         {/* Buttons */}
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Button
             type="primary"
             size="large"
@@ -136,7 +136,7 @@ const AttendancePage = () => {
             onClick={handleClockIn}
             loading={submitting}
             disabled={clockedIn}
-            style={{ minWidth: 150 }}
+            style={{ minWidth: 120 }}
           >
             Clock In
           </Button>
@@ -148,7 +148,7 @@ const AttendancePage = () => {
             onClick={handleClockOut}
             loading={submitting}
             disabled={!clockedIn || clockedOut}
-            style={{ minWidth: 150 }}
+            style={{ minWidth: 120 }}
           >
             Clock Out
           </Button>

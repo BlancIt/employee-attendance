@@ -33,7 +33,7 @@ const LoginPage = () => {
       alignItems: 'center',
       background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
     }}>
-      <Card style={{ width: 400, borderRadius: 12 }}>
+      <Card style={{ width: '100%', maxWidth: 400, margin: '0 16px', borderRadius: 12 }}>
         <div style={{ textAlign: 'center', marginBottom: 24 }}>
           <Title level={3}>Employee Attendance</Title>
           <Text type="secondary">Login with your company email</Text>
