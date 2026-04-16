@@ -11,6 +11,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
+import AdminNotification from '../components/AdminNotification';
 
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
@@ -119,6 +120,7 @@ const AdminLayout = () => {
         </Header>
 
         <Content style={{ margin: isMobile ? 12 : 24, padding: isMobile ? 16 : 24, background: '#fff', borderRadius: 8 }}>
+          <AdminNotification />
           <Outlet />
         </Content>
       </Layout>
