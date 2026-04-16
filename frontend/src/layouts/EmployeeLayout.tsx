@@ -35,17 +35,17 @@ const EmployeeLayout = () => {
     {
       key: '/profile',
       icon: <UserOutlined />,
-      label: 'Profil',
+      label: 'User Profile',
     },
     {
       key: '/attendance',
       icon: <ClockCircleOutlined />,
-      label: 'Absen',
+      label: 'Attendance',
     },
     {
       key: '/attendance-summary',
       icon: <FileTextOutlined />,
-      label: 'Summary Absen',
+      label: 'Attendance Summary',
     },
   ];
 
@@ -80,6 +80,7 @@ const EmployeeLayout = () => {
           trigger={null}
           collapsible
           collapsed={collapsed}
+          width={220}
           style={{ background: '#fff' }}
         >
           <div style={{ padding: 16, textAlign: 'center' }}>

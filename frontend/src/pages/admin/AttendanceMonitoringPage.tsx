@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Table, DatePicker, Card, Tag, Typography } from 'antd';
+import { Table, Tag, Typography } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
 import dayjs, { Dayjs } from 'dayjs';
 import api from '../../api/axios';
+import DateRangeFilter from '../../components/DateRangeFilter';
 
 const { Title } = Typography;
 
@@ -86,31 +87,7 @@ const AttendanceMonitoringPage = () => {
         <CalendarOutlined /> Attendance Monitoring
       </Title>
 
-      <Card style={{ marginBottom: 16 }}>
-        <div style={{ fontWeight: 500, marginBottom: 8 }}>Filter by Date Range:</div>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          <DatePicker
-            value={dateRange[0]}
-            onChange={(date) => {
-              if (date) setDateRange([date, dateRange[1]]);
-            }}
-            format="DD MMM YYYY"
-            allowClear={false}
-            placeholder="From"
-            style={{ flex: 1, minWidth: 140, maxWidth: 200 }}
-          />
-          <DatePicker
-            value={dateRange[1]}
-            onChange={(date) => {
-              if (date) setDateRange([dateRange[0], date]);
-            }}
-            format="DD MMM YYYY"
-            allowClear={false}
-            placeholder="To"
-            style={{ flex: 1, minWidth: 140, maxWidth: 200 }}
-          />
-        </div>
-      </Card>
+      <DateRangeFilter dateRange={dateRange} onChange={setDateRange} />
 
       <Table
         columns={columns}

@@ -38,12 +38,12 @@ const AdminLayout = () => {
     {
       key: '/admin/employees',
       icon: <TeamOutlined />,
-      label: 'Kelola Karyawan',
+      label: 'Employee Management',
     },
     {
       key: '/admin/attendance',
       icon: <CalendarOutlined />,
-      label: 'Monitor Absensi',
+      label: 'Attendance Monitoring',
     },
     {
       type: 'divider' as const,
@@ -51,17 +51,17 @@ const AdminLayout = () => {
     {
       key: '/admin/profile',
       icon: <UserOutlined />,
-      label: 'Profil Saya',
+      label: 'User Profile',
     },
     {
       key: '/admin/my-attendance',
       icon: <ClockCircleOutlined />,
-      label: 'Absen',
+      label: 'Attendance',
     },
     {
       key: '/admin/my-attendance-summary',
       icon: <FileTextOutlined />,
-      label: 'Summary Absen',
+      label: 'Attendance Summary',
     },
   ];
 
@@ -95,6 +95,7 @@ const AdminLayout = () => {
           trigger={null}
           collapsible
           collapsed={collapsed}
+          width={220}
           style={{ background: '#fff' }}
         >
           <div style={{ padding: 16, textAlign: 'center' }}>
