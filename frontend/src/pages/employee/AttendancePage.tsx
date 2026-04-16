@@ -84,6 +84,7 @@ const AttendancePage = () => {
   return (
     <div style={{ maxWidth: 500, margin: '0 auto' }}>
       <Card style={{ textAlign: 'center' }}>
+        
         {/* Live Clock */}
         <ClockCircleOutlined style={{ fontSize: 48, color: '#1677ff', marginBottom: 16 }} />
         <Title level={2} style={{ margin: 0 }}>
