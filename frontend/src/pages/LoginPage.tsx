@@ -77,12 +77,6 @@ const LoginPage = () => {
             </Button>
           </Form.Item>
         </Form>
-
-        {/* <div style={{ textAlign: 'center' }}>
-          <Text type="secondary" style={{ fontSize: 12 }}>
-            Demo: budi.santoso@gmail.com / password123
-          </Text>
-        </div> */}
       </Card>
     </div>
   );

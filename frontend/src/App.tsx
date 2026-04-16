@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ConfigProvider, App as AntApp } from 'antd'
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
+import ProfilePage from './pages/employee/ProfilePage';
 import EmployeeLayout from './layouts/EmployeeLayout';
 
 // Protects routes - redirects to login if not authenticated
@@ -31,7 +32,7 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<Navigate to="/profile" />} />
-        <Route path="profile" element={<div>Profile Page (coming next)</div>} />
+        <Route path="profile" element={<ProfilePage />} />
         <Route path="attendance" element={<div>Attendance Page (coming soon)</div>} />
         <Route path="attendance-summary" element={<div>Summary Page (coming soon)</div>} />
       </Route>
