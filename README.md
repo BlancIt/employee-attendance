@@ -5,7 +5,7 @@ Fullstack web application for employee WFH attendance management built with **Ne
 ## Tech Stack
 
 - **Backend:** NestJS, TypeScript, TypeORM, PostgreSQL
-- **Frontend:** React.js, TypeScript
+- **Frontend:** React (Vite), TypeScript, Ant Design
 - **Auth:** JWT (JSON Web Token)
 - **Message Queue:** RabbitMQ
 - **Real-time:** Socket.IO (WebSocket)
@@ -39,6 +39,16 @@ npm run start:dev
 
 Backend will run on `http://localhost:3000`. On first run, it automatically seeds demo data.
 
+### 3. Start Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend will run on `http://localhost:5173`.
+
 ## Demo Accounts
 
 | Role     | Email                 | Password    |
@@ -60,6 +70,14 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 - RabbitMQ message queue for change logging to separate database
 - Auto-seed demo data on first run
 
+### Frontend (Employee)
+- Login page with JWT authentication
+- Employee layout with collapsible sidebar (drawer on mobile)
+- Profile page (view info, update photo, edit phone, change password)
+- Attendance page (live clock, clock in/out with status tracking)
+- Attendance summary page (table with date range filter, duration calculation)
+- Responsive design (mobile, tablet, desktop)
+
 ## API Endpoints
 
 ### Auth
@@ -67,7 +85,7 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 
 ### Employees (requires JWT)
 - `GET /api/employees/me` - Get current user profile
-- `PATCH /api/employees/me` - Update current user  profile (phone, photo)
+- `PATCH /api/employees/me` - Update current user profile (phone, photo)
 - `POST /api/employees/me/change-password` - Change current user password
 - `GET /api/employees` - [Admin] List all employees
 - `POST /api/employees` - [Admin] Create employee
@@ -82,21 +100,20 @@ Backend will run on `http://localhost:3000`. On first run, it automatically seed
 ## Architecture
 
 ```
-                ┌──────────────┐
-                │   NestJS     │
-                │  (Backend)   │
-                └──┬───┬───┬──┘
-                   │   │   │
-          ┌────────┘   │   └────────┐
-          │            │            │
- ┌────────▼───┐ ┌─────▼─────┐ ┌────▼────────┐
- │ PostgreSQL │ │ RabbitMQ  │ │ PostgreSQL  │
- │ (Main DB)  │ │ (Queue)   │ │ (Logs DB)   │
- └────────────┘ └───────────┘ └─────────────┘
+┌──────────────┐     ┌──────────────┐
+│    React     │────>│   NestJS     │
+│  (Frontend)  │     │  (Backend)   │
+└──────────────┘     └──┬───┬───┬──┘
+                        │   │   │
+               ┌────────┘   │   └────────┐
+               │            │            │
+      ┌────────▼───┐ ┌─────▼─────┐ ┌────▼────────┐
+      │ PostgreSQL │ │ RabbitMQ  │ │ PostgreSQL  │
+      │ (Main DB)  │ │ (Queue)   │ │ (Logs DB)   │
+      └────────────┘ └───────────┘ └─────────────┘
 ```
 
 ## To Be Worked/Added
 
-- Frontend - Employee app (Login, Profile, Attendance pages)
-- Frontend - Admin app (Employee management, Attendance monitoring)
+- Frontend - Admin app (Employee management, Attendance monitoring, WebSocket notifications)
 - Testing, Polishing and finishing
