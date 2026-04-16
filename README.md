@@ -1,4 +1,4 @@
-# Employee Attendance - IN PROGRESS
+# Employee Attendance
 
 Fullstack web application for employee WFH attendance management built with **NestJS** (backend) and **React** (frontend).
 
@@ -58,7 +58,7 @@ Frontend will run on `http://localhost:5173`.
 | Employee | testingguy@gmail.com  | password123 |
 | Admin    | randi.putra@gmail.com | password123 |
 
-## Current Implemented Features
+## Implemented Features
 
 ### Backend
 - Database schema (Employee + Attendance tables)
@@ -77,6 +77,15 @@ Frontend will run on `http://localhost:5173`.
 - Attendance page (live clock, clock in/out with status tracking)
 - Attendance summary page (table with date range filter, duration calculation)
 - Responsive design (mobile, tablet, desktop)
+
+### Frontend (Admin)
+- Admin layout with separate navigation
+- Employee management (list, create, edit employees with admin toggle)
+- Attendance monitoring (view all employees' attendance with date filter)
+- Real-time WebSocket notifications on employee profile changes
+- Admin can access own employee features (profile, attendance)
+- Self-protection (cannot revoke own admin access)
+- Role-based route protection (admin-only pages)
 
 ## API Endpoints
 
@@ -113,7 +122,27 @@ Frontend will run on `http://localhost:5173`.
       └────────────┘ └───────────┘ └─────────────┘
 ```
 
-## To Be Worked/Added
+## Project Structure
 
-- Frontend - Admin app (Employee management, Attendance monitoring, WebSocket notifications)
-- Testing, Polishing and finishing
+```
+employee-attendance/
+├── backend/
+│   └── src/
+│       ├── auth/           # JWT authentication
+│       ├── employee/       # Employee CRUD & profile
+│       ├── attendance/     # Clock in/out & summaries
+│       ├── notification/   # WebSocket & RabbitMQ
+│       ├── entities/       # TypeORM entities
+│       ├── seed/           # Demo data seeder
+│       └── config/         # Database configurations
+├── frontend/
+│   └── src/
+│       ├── api/            # Axios instance & interceptors
+│       ├── context/        # Auth context (React Context)
+│       ├── components/     # Reusable components
+│       ├── layouts/        # Employee & Admin layouts
+│       └── pages/
+│           ├── employee/   # Profile, Attendance, Summary
+│           └── admin/      # Employee management, Monitoring
+└── docker-compose.yml      # PostgreSQL, RabbitMQ
+```

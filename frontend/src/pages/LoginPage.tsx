@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
-  const { login, isAdmin } = useAuth();
+  const { login } = useAuth();
   const { message } = App.useApp();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const LoginPage = () => {
     try {
       await login(values.email, values.password);
       message.success('Login successful!');
-      navigate('/profile');
+      navigate('/');
     } catch (error: any) {
       message.error(error.response?.data?.message || 'Login failed');
     } finally {

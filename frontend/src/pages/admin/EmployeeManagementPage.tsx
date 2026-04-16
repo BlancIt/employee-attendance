@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Table, Button, Modal, Form, Input, Switch, App, Typography, Grid } from 'antd';
 import { PlusOutlined, EditOutlined, TeamOutlined } from '@ant-design/icons';
+import { useAuth } from '../../context/AuthContext';
 import api from '../../api/axios';
 
 const { Title } = Typography;
@@ -23,6 +24,7 @@ const EmployeeManagementPage = () => {
   const [saving, setSaving] = useState(false);
   const [form] = Form.useForm();
   const { message } = App.useApp();
+  const { user } = useAuth();
   const screens = useBreakpoint();
   const isMobile = !screens.md;
 
@@ -187,7 +189,7 @@ const EmployeeManagementPage = () => {
           </Form.Item>
 
           <Form.Item name="is_admin" label="Admin Access" valuePropName="checked">
-            <Switch />
+            <Switch disabled={editing?.id === user?.id} />
           </Form.Item>
 
           <Form.Item>

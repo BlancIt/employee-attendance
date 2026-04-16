@@ -132,8 +132,8 @@ const ProfilePage = () => {
           <Descriptions.Item label="Email">{profile?.email}</Descriptions.Item>
           <Descriptions.Item label="Position">{profile?.position}</Descriptions.Item>
           <Descriptions.Item label="Phone Number">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>{profile?.phone_number || 'Not set'}</span>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ flex: 1 }}>{profile?.phone_number || 'Not set'}</span>
               <Button
                 type="link"
                 icon={<EditOutlined />}
@@ -141,18 +141,20 @@ const ProfilePage = () => {
                   phoneForm.setFieldsValue({ phone_number: profile?.phone_number });
                   setPhoneModal(true);
                 }}
+                style={{ width: 100 }}
               >
                 Edit
               </Button>
             </div>
           </Descriptions.Item>
           <Descriptions.Item label="Password">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span>••••••••</span>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <span style={{ flex: 1 }}>••••••••</span>
               <Button
                 type="link"
                 icon={<LockOutlined />}
                 onClick={() => setPasswordModal(true)}
+                style={{ width: 100 }}
               >
                 Change
               </Button>

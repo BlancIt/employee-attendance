@@ -9,6 +9,8 @@ import {
   MenuUnfoldOutlined,
   MenuOutlined,
   UserOutlined,
+  ClockCircleOutlined,
+  FileTextOutlined,
 } from '@ant-design/icons';
 import { useAuth } from '../context/AuthContext';
 import AdminNotification from '../components/AdminNotification';
@@ -42,6 +44,24 @@ const AdminLayout = () => {
       key: '/admin/attendance',
       icon: <CalendarOutlined />,
       label: 'Monitor Absensi',
+    },
+    {
+      type: 'divider' as const,
+    },
+    {
+      key: '/admin/profile',
+      icon: <UserOutlined />,
+      label: 'Profil Saya',
+    },
+    {
+      key: '/admin/my-attendance',
+      icon: <ClockCircleOutlined />,
+      label: 'Absen',
+    },
+    {
+      key: '/admin/my-attendance-summary',
+      icon: <FileTextOutlined />,
+      label: 'Summary Absen',
     },
   ];
 

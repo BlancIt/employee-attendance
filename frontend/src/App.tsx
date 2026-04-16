@@ -50,7 +50,7 @@ const AppRoutes = () => {
         <Route path="attendance-summary" element={<AttendanceSummaryPage />} />
       </Route>
 
-      {/* Admin Routes */}
+      {/* Admin Routes - Has access to two more feature: Employee Management and Attendance Monitor page */}
       <Route
         path="/admin"
         element={
@@ -62,6 +62,9 @@ const AppRoutes = () => {
         <Route index element={<Navigate to="/admin/employees" />} />
         <Route path="employees" element={<EmployeeManagementPage />} />
         <Route path="attendance" element={<AttendanceMonitoringPage />} />
+        <Route path="profile" element={<ProfilePage />} />
+        <Route path="my-attendance" element={<AttendancePage />} />
+        <Route path="my-attendance-summary" element={<AttendanceSummaryPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" />} />
