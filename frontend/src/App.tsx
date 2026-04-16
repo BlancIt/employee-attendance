@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/employee/ProfilePage';
 import AttendancePage from './pages/employee/AttendancePage';
 import AttendanceSummaryPage from './pages/employee/AttendanceSummaryPage';
+import EmployeeManagementPage from './pages/admin/EmployeeManagementPage';
 import EmployeeLayout from './layouts/EmployeeLayout';
 import AdminLayout from './layouts/AdminLayout';
 
@@ -58,7 +59,7 @@ const AppRoutes = () => {
         }
       >
         <Route index element={<Navigate to="/admin/employees" />} />
-        <Route path="employees" element={<div>Employee Management (coming soon)</div>} />
+        <Route path="employees" element={<EmployeeManagementPage />} />
         <Route path="attendance" element={<div>Attendance Monitoring (coming soon)</div>} />
       </Route>
 
