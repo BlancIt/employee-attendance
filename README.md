@@ -1,5 +1,9 @@
 # Employee Attendance
 
+<p align="center">
+  <img src="docs/screenshots/app-screenshot.png" alt="Employee Attendance App" width="800" />
+</p>
+
 Fullstack web application for employee WFH attendance management built with **NestJS** (backend) and **React** (frontend).
 
 ## Key Features
@@ -14,21 +18,6 @@ Fullstack web application for employee WFH attendance management built with **Ne
 - **Responsive Design:** Adapted for all type of devices
 - **Self-Protection:** Admins cannot accidentally revoke their own admin access
 - **Auto-Seeding:** Demo accounts are automatically created on first run
-
-## Screenshots
-
-### Employee Experience
-![Login Page](docs/screenshots/login.png)
-![Profile Page](docs/screenshots/profile.png)
-![Attendance Page](docs/screenshots/attendance.png)
-![Attendance Summary](docs/screenshots/summary.png)
-
-### Admin Experience
-![Employee Management](docs/screenshots/admin-employees.png)
-![Attendance Monitoring](docs/screenshots/admin-attendance.png)
-
-### Mobile View
-![Mobile Responsive](docs/screenshots/mobile.png)
 
 ## Technologies Used
 
