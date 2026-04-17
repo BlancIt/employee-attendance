@@ -2,21 +2,56 @@
 
 Fullstack web application for employee WFH attendance management built with **NestJS** (backend) and **React** (frontend).
 
-## Tech Stack
+## Key Features
 
-- **Backend:** NestJS, TypeScript, TypeORM, PostgreSQL
-- **Frontend:** React (Vite), TypeScript, Ant Design
-- **Auth:** JWT (JSON Web Token)
-- **Message Queue:** RabbitMQ
-- **Real-time:** Socket.IO (WebSocket)
-- **Database:** PostgreSQL (main database) + PostgreSQL (change logs database)
+- **Role-Based Access Control:** Separate application features for employees and admins with protected routes
+- **Attendance Tracking:** Clock in/out with live clock, automatic status tracking, and duration calculation
+- **Profile Management:** Employees can update their photo, phone number, and change password
+- **Employee Management:** Admins can create, view, and edit employees with admin access toggle
+- **Attendance Monitoring:** Admins can view all employees' attendance records with date range filtering
+- **Real-Time Notifications:** WebSocket-powered live alerts to admins when employees update their profile data
+- **Change Logging:** Profile changes are queued through RabbitMQ and persisted to a separate audit database
+- **Responsive Design:** Adapted for all type of devices
+- **Self-Protection:** Admins cannot accidentally revoke their own admin access
+- **Auto-Seeding:** Demo accounts are automatically created on first run
+
+## Screenshots
+
+### Employee Experience
+![Login Page](docs/screenshots/login.png)
+![Profile Page](docs/screenshots/profile.png)
+![Attendance Page](docs/screenshots/attendance.png)
+![Attendance Summary](docs/screenshots/summary.png)
+
+### Admin Experience
+![Employee Management](docs/screenshots/admin-employees.png)
+![Attendance Monitoring](docs/screenshots/admin-attendance.png)
+
+### Mobile View
+![Mobile Responsive](docs/screenshots/mobile.png)
+
+## Technologies Used
+
+- **NestJS:** Progressive Node.js framework with modular architecture
+- **React (Vite):** Modern UI library with fast development server and optimized builds
+- **TypeScript:** Static typing for safer and more maintainable code across frontend and backend
+- **TypeORM:** Object-relational mapper for PostgreSQL with entity-based schema management
+- **PostgreSQL:** Primary database for employees and attendance, plus a separate database for change logs
+- **JWT & bcrypt:** JSON Web Token authentication with Passport strategy and secure password hashing
+- **RabbitMQ (amqplib):** Message queue for asynchronous change log processing
+- **Socket.IO:** WebSocket server and client for real-time admin notifications
+- **Ant Design:** Enterprise-grade UI component library with built-in responsive grid
+- **React Router:** Client-side routing with protected routes and nested layouts
+- **Axios:** HTTP client with JWT interceptors for authenticated API calls
+- **Day.js:** Lightweight date manipulation for filtering and formatting
+- **Docker Compose:** Containerized PostgreSQL databases and RabbitMQ for one-command setup
 
 ## Prerequisites
 
 - Node.js >= 18
 - Docker & Docker Compose
 
-## Quick Start
+## Getting Started
 
 ### 1. Start Infrastructure
 
@@ -58,34 +93,18 @@ Frontend will run on `http://localhost:5173`.
 | Employee | testingguy@gmail.com  | password123 |
 | Admin    | randi.putra@gmail.com | password123 |
 
-## Implemented Features
+## Pages & Modules
 
-### Backend
-- Database schema (Employee + Attendance tables)
-- JWT authentication (login)
-- Employee profile API (view, update photo/phone, change password)
-- Attendance API (clock in, clock out, summary with date filter)
-- Admin API (manage employees, view all attendance)
-- Real-time WebSocket notifications to admin on profile changes
-- RabbitMQ message queue for change logging to separate database
-- Auto-seed demo data on first run
+### Employee Pages
+- **Login:** JWT authentication with role-based redirect
+- **Profile:** View info, upload photo, edit phone number, change password
+- **Attendance:** Live clock with clock in/out buttons and daily status tracking
+- **Attendance Summary:** History table with date range filter and duration calculation
 
-### Frontend (Employee)
-- Login page with JWT authentication
-- Employee layout with collapsible sidebar (drawer on mobile)
-- Profile page (view info, update photo, edit phone, change password)
-- Attendance page (live clock, clock in/out with status tracking)
-- Attendance summary page (table with date range filter, duration calculation)
-- Responsive design (mobile, tablet, desktop)
-
-### Frontend (Admin)
-- Admin layout with separate navigation
-- Employee management (list, create, edit employees with admin toggle)
-- Attendance monitoring (view all employees' attendance with date filter)
-- Real-time WebSocket notifications on employee profile changes
-- Admin can access own employee features (profile, attendance)
-- Self-protection (cannot revoke own admin access)
-- Role-based route protection (admin-only pages)
+### Admin Pages
+- **Employee Management:** List, create, and edit employees with admin access toggle
+- **Attendance Monitoring:** View all employees' attendance records with date filtering
+- **Employee Features:** Admins also have access to all employee pages from the same panel
 
 ## API Endpoints
 
